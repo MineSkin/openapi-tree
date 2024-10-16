@@ -10,19 +10,19 @@
     "errors": {
       "type": "array",
       "items": {
-        "$ref": "./CodeAndMessage"
+        "$ref": "./CodeAndMessage.json"
       }
     },
     "warnings": {
       "type": "array",
       "items": {
-        "$ref": "./CodeAndMessage"
+        "$ref": "./CodeAndMessage.json"
       }
     },
     "messages": {
       "type": "array",
       "items": {
-        "$ref": "./CodeAndMessage"
+        "$ref": "./CodeAndMessage.json"
       }
     },
     "links": {

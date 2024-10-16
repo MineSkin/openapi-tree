@@ -1,7 +1,7 @@
 {
   "allOf": [
     {
-      "$ref": "./GenericResponseBody"
+      "$ref": "./GenericResponseBody.json"
     },
     {
       "type": "object",

@@ -746,6 +746,7 @@
   "paths": {
     "/v2/generate": {
       "post": {
+        "summary": "Generate a skin",
         "description": "Generate a skin",
         "tags": [
           "generate"
@@ -814,6 +815,7 @@
     },
     "/v2/queue": {
       "post": {
+        "summary": "Queue skin generation",
         "description": "Queue skin generation",
         "tags": [
           "generate",
@@ -886,6 +888,7 @@
     },
     "/v2/queue/{jobId}": {
       "get": {
+        "summary": "Get the status of a generator job",
         "description": "Get the status of a generator job",
         "tags": [
           "queue"
@@ -928,6 +931,7 @@
     },
     "/v2/delay": {
       "get": {
+        "summary": "Get the current delay",
         "tags": [
           "delay"
         ],
@@ -955,6 +959,7 @@
     },
     "/v2/skins/{uuid}": {
       "get": {
+        "summary": "Get a skin by UUID",
         "description": "Get a skin by UUID",
         "tags": [
           "skins"
@@ -995,6 +1000,7 @@
     },
     "/v2/skins": {
       "get": {
+        "summary": "Get a list of skins",
         "description": "Get a list of skins",
         "tags": [
           "skins"

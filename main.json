@@ -368,10 +368,10 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/userAgent"
+            "$ref": "./components/parameters/userAgent.json"
           },
           {
-            "$ref": "#/components/parameters/apiKey"
+            "$ref": "./components/parameters/apiKey.json"
           }
         ],
         "requestBody": {

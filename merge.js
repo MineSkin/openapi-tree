@@ -32,7 +32,7 @@ const ROOT_KEYS = [
     // write openapi.json
     await fs.writeFile('openapi.json', JSON.stringify(output, null, 2), {
         encoding: 'utf8',
-        flag: 'wx'
+        flag: process.argv.includes('--force') ? 'w' : 'wx'
     });
 })();
 

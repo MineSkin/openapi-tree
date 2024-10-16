@@ -765,10 +765,10 @@
               "schema": {
                 "oneOf": [
                   {
-                    "$ref": "./components/schemas/UrlGenerateBody.json"
+                    "$ref": "#/components/schemas/UrlGenerateBody"
                   },
                   {
-                    "$ref": "./components/schemas/UserGenerateBody.json"
+                    "$ref": "#/components/schemas/UserGenerateBody"
                   }
                 ]
               }
@@ -778,13 +778,13 @@
                 "description": "File Upload Generate Request",
                 "oneOf": [
                   {
-                    "$ref": "./components/schemas/UploadGenerateBody.json"
+                    "$ref": "#/components/schemas/UploadGenerateBody"
                   },
                   {
-                    "$ref": "./components/schemas/UrlGenerateBody.json"
+                    "$ref": "#/components/schemas/UrlGenerateBody"
                   },
                   {
-                    "$ref": "./components/schemas/UserGenerateBody.json"
+                    "$ref": "#/components/schemas/UserGenerateBody"
                   }
                 ]
               },
@@ -834,10 +834,10 @@
               "schema": {
                 "oneOf": [
                   {
-                    "$ref": "./components/schemas/UrlGenerateBody.json"
+                    "$ref": "#/components/schemas/UrlGenerateBody"
                   },
                   {
-                    "$ref": "./components/schemas/UserGenerateBody.json"
+                    "$ref": "#/components/schemas/UserGenerateBody"
                   }
                 ]
               }
@@ -847,13 +847,13 @@
                 "description": "File Upload Generate Request",
                 "oneOf": [
                   {
-                    "$ref": "./components/schemas/UploadGenerateBody.json"
+                    "$ref": "#/components/schemas/UploadGenerateBody"
                   },
                   {
-                    "$ref": "./components/schemas/UrlGenerateBody.json"
+                    "$ref": "#/components/schemas/UrlGenerateBody"
                   },
                   {
-                    "$ref": "./components/schemas/UserGenerateBody.json"
+                    "$ref": "#/components/schemas/UserGenerateBody"
                   }
                 ]
               },
@@ -982,7 +982,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "./components/schemas/SkinInfo.json"
+                  "$ref": "#/components/schemas/SkinInfo"
                 }
               }
             }
@@ -1028,7 +1028,7 @@
                     "skins": {
                       "type": "array",
                       "items": {
-                        "$ref": "./components/schemas/PartialSkinInfo.json"
+                        "$ref": "#/components/schemas/PartialSkinInfo"
                       }
                     },
                     "links": {
@@ -1057,7 +1057,5 @@
         }
       }
     }
-  },
-  "webhooks": {},
-  "externalDocs": {}
+  }
 }

@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "description":"URL Generate Request Body",
+  "allOf": [
+    {
+      "$ref": "./GenerateOptions.json"
+    },
+    {
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "url": "https://i.imgur.com/kQPrtYw.png"
+      }
+    }
+  ]
+}

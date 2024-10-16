@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "variant": {
+      "$ref": "./SkinVariant.json"
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "visibility": {
+      "$ref": "./SkinVisibility.json"
+    }
+  },
+  "example": {
+    "variant": "classic",
+    "name": "My Example Skin",
+    "visibility": "public"
+  }
+}

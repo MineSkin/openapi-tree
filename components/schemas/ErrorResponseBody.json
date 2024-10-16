@@ -1,0 +1,23 @@
+{
+  "allOf": [
+    {
+      "$ref": "./GenericResponseBody"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "success": {
+          "example": false
+        },
+        "errors": {
+          "example": [
+            {
+              "code": "generic_error",
+              "message": "Something went wrong"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

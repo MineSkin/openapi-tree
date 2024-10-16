@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "description":"User Generate Request Body",
+  "allOf": [
+    {
+      "$ref": "./GenerateOptions.json"
+    },
+    {
+      "required": [
+        "uuid"
+      ],
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "minLength": 32,
+          "maxLength": 36
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": [
+    "next",
+    "delay"
+  ],
+  "properties": {
+    "next": {
+      "$ref": "./NextRequest.json"
+    },
+    "delay": {
+      "$ref": "./DelayInfo.json"
+    }
+  }
+}

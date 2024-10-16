@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "required": [
+    "success"
+  ],
+  "properties": {
+    "success": {
+      "type": "boolean"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "./CodeAndMessage"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "$ref": "./CodeAndMessage"
+      }
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "$ref": "./CodeAndMessage"
+      }
+    },
+    "links": {
+      "type": "object",
+      "description": "Links to related resources",
+      "properties": {
+        "self": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "required": [
+    "version",
+    "timestamp",
+    "duration",
+    "account",
+    "server"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "number"
+    },
+    "duration": {
+      "type": "number"
+    },
+    "account": {
+      "type": "string"
+    },
+    "server": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "required": [
+    "value",
+    "signature"
+  ],
+  "properties": {
+    "value": {
+      "type": "string",
+      "description": "Skin Value"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Skin Signature"
+    }
+  }
+}

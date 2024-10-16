@@ -1,0 +1,10 @@
+{
+  "name": "User-Agent",
+  "description": "Custom User-Agent for your application, see [user-agent.dev](https://user-agent.dev/) for implementation examples",
+  "example": "ExampleApp/v1.0",
+  "in": "header",
+  "required": true,
+  "schema": {
+    "type": "string"
+  }
+}

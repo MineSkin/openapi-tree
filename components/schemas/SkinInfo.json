@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "required": [
+    "uuid",
+    "variant",
+    "visibility",
+    "texture",
+    "generator",
+    "views",
+    "duplicate"
+  ],
+  "properties": {
+    "uuid": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "visibility": {
+      "$ref": "./SkinVisibility.json"
+    },
+    "variant": {
+      "$ref": "./SkinVariant.json"
+    },
+    "texture": {
+      "$ref": "./SkinTexture.json"
+    },
+    "generator": {
+      "$ref": "./GeneratorInfo.json"
+    },
+    "views": {
+      "type": "number"
+    },
+    "duplicate": {
+      "type": "boolean"
+    }
+  },
+  "example": {
+    "uuid": "c891dfac4cd247a2a55743e7e82ce76f",
+    "name": "Test Skin",
+    "visibility": "public",
+    "variant": "classic",
+    "views": 1,
+    "duplicate": false
+  }
+}

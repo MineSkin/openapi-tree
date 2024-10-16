@@ -1,0 +1,610 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "MineSkin API",
+    "version": "2.0.0",
+    "description": "Client implementations: [Java](https://github.com/InventivetalentDev/MineskinClient) \n[NodeJS](https://github.com/InventivetalentDev/mineskin-client)\n\n [Examples](https://github.com/MineSkin/examples)\n\n ",
+    "contact": {
+      "name": "API Support",
+      "url": "https://discord.gg/DeeNu3cUMp",
+      "email": "info@mineskin.org"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/MineSkin/api.mineskin.org/blob/master/LICENSE"
+    },
+    "termsOfService": "https://legal.inventivetalent.org/terms/mineskin"
+  },
+  "servers": [
+    {
+      "url": "https://api.mineskin.org"
+    }
+  ],
+  "tags": [
+    {
+      "name": "generate"
+    },
+    {
+      "name": "queue"
+    },
+    {
+      "name": "skins"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "description": "API key header - Get your key from [account.mineskin.org](https://account.mineskin.org/keys)",
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "NextRequest": {
+        "type": "object",
+        "required": [
+          "absolute",
+          "relative"
+        ],
+        "properties": {
+          "absolute": {
+            "type": "number",
+            "format":"timestamp",
+            "description": "Absolute timestamp (in milliseconds) after which the next request can be made",
+            "example": 1726829503123
+          },
+          "relative": {
+            "type": "number",
+            "description": "Relative delay (in milliseconds) after which the next request can be made",
+            "example": 800
+          }
+        }
+      },
+      "DelayInfo": {
+        "type": "object",
+        "required": [
+          "millis"
+        ],
+        "properties": {
+          "millis": {
+            "type": "number",
+            "description": "Delay between requests (in milliseconds) - depends on the API key used for this request",
+            "example": 1200
+          },
+          "seconds": {
+            "type": "number",
+            "description": "Delay between requests (in seconds) - depends on the API key used for this request",
+            "example": 1.2
+          }
+        }
+      },
+      "RateLimitInfo": {
+        "type": "object",
+        "required": [
+          "next",
+          "delay"
+        ],
+        "properties": {
+          "next": {
+            "$ref": "#/components/schemas/NextRequest"
+          },
+          "delay": {
+            "$ref": "#/components/schemas/DelayInfo"
+          }
+        }
+      },
+      "JobInfo": {
+        "type": "object",
+        "required": [
+          "uuid",
+          "status"
+        ],
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Job UUID"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "unknown",
+              "waiting",
+              "active",
+              "failed",
+              "completed"
+            ]
+          }
+        }
+      },
+      "CodeAndMessage": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+
+    },
+    "responses": {
+      "GenerateUserErrorResponse": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "./components/schemas/ErrorResponseBody.json"
+                },
+                {
+                  "properties": {
+                    "rateLimit": {
+                      "$ref": "./components/schemas/RateLimitInfo.json"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "GenerateErrorResponse": {
+        "description": "Generator Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "./components/schemas/ErrorResponseBody.json"
+                },
+                {
+                  "properties": {
+                    "rateLimit": {
+                      "$ref": "./components/schemas/RateLimitInfo.json"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "GenericErrorResponse": {
+        "description": "Generic Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ErrorResponseBody"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "NotFoundErrorResponse": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "./components/schemas/ErrorResponseBody.json"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "GenerateRateLimitResponse": {
+        "description": "Rate Limited",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "./components/schemas/ErrorResponseBody.json"
+                },
+                {
+                  "properties": {
+                    "rateLimit": {
+                      "$ref": "./components/schemas/RateLimitInfo.json"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "QueueProcessingResponse": {
+        "description": "Job Processing",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "job"
+                  ],
+                  "properties": {
+                    "job": {
+                      "$ref": "#/components/schemas/JobInfo"
+                    },
+                    "rateLimit": {
+                      "$ref": "./components/schemas/RateLimitInfo.json"
+                    }
+                  }
+                },
+                {
+                  "$ref": "./components/schemas/SuccessResponseBody.json"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "QueueSuccessResponse": {
+        "description": "Job Completed",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "job",
+                    "skin"
+                  ],
+                  "properties": {
+                    "job": {
+                      "$ref": "#/components/schemas/JobInfo"
+                    },
+                    "skin": {
+                      "$ref": "./components/schemas/SkinInfo.json"
+                    },
+                    "rateLimit": {
+                      "$ref": "#/components/schemas/RateLimitInfo"
+                    }
+                  }
+                },
+                {
+                  "$ref": "./components/schemas/SuccessResponseBody.json"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/v2/generate": {
+      "post": {
+        "description": "Generate a skin",
+        "tags": [
+          "generate"
+        ],
+        "parameters": [
+          {
+            "$ref": "./components/parameters/userAgent.json"
+          },
+          {
+            "$ref": "./components/parameters/apiKey.json"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+
+            "application/json":{
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "./components/schemas/UrlGenerateBody.json"
+                  },
+                  {
+                    "$ref": "./components/schemas/UserGenerateBody.json"
+                  }
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "description":"File Upload Generate Request",
+                "oneOf": [
+                  {
+                    "$ref": "./components/schemas/UploadGenerateBody.json"
+                  },
+                  {
+                    "$ref": "./components/schemas/UrlGenerateBody.json"
+                  },
+                  {
+                    "$ref": "./components/schemas/UserGenerateBody.json"
+                  }
+                ]
+              },
+              "encoding": {
+                "file": {
+                  "contentType": "image/png"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "./components/responses/GenerateSuccessResponse.json"
+          },
+          "400": {
+            "$ref": "#/components/responses/GenerateUserErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/GenerateRateLimitResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/GenerateErrorResponse"
+          }
+        }
+      }
+    },
+    "/v2/queue": {
+      "post": {
+        "description": "Queue skin generation",
+        "tags": [
+          "generate",
+          "queue"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userAgent"
+          },
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+
+            "application/json":{
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "./components/schemas/UrlGenerateBody.json"
+                  },
+                  {
+                    "$ref": "./components/schemas/UserGenerateBody.json"
+                  }
+                ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "description":"File Upload Generate Request",
+                "oneOf": [
+                  {
+                    "$ref": "./components/schemas/UploadGenerateBody.json"
+                  },
+                  {
+                    "$ref": "./components/schemas/UrlGenerateBody.json"
+                  },
+                  {
+                    "$ref": "./components/schemas/UserGenerateBody.json"
+                  }
+                ]
+              },
+              "encoding": {
+                "file": {
+                  "contentType": "image/png"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/QueueProcessingResponse"
+          },
+          "200": {
+            "$ref": "#/components/responses/QueueSuccessResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/GenerateUserErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/GenerateRateLimitResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/GenerateErrorResponse"
+          }
+        }
+      }
+    },
+    "/v2/queue/{jobId}": {
+      "get": {
+        "description": "Get the status of a generator job",
+        "tags": [
+          "queue"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userAgent"
+          },
+          {
+            "$ref": "#/components/parameters/apiKey"
+          },
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/QueueProcessingResponse"
+          },
+          "200": {
+            "$ref": "#/components/responses/QueueSuccessResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/GenerateUserErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/GenerateRateLimitResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/GenerateErrorResponse"
+          }
+        }
+      }
+    },
+
+    "/v2/delay": {
+      "get": {
+        "tags": [
+          "delay"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userAgent"
+          },
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delay Info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/skins/{uuid}": {
+      "get": {
+        "description": "Get a skin by UUID",
+        "tags": [
+          "skins"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/userAgent"
+          },
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Skin Info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./components/schemas/SkinInfo.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundErrorResponse"
+          }
+        }
+      }
+    },
+    "/v2/skins": {
+      "get": {
+        "description": "Get a list of skins",
+        "tags": [
+          "skins"
+        ],
+        "parameters": [
+          {
+            "name": "after",
+            "in": "query",
+            "description": "reference of the last skin in the previous page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/userAgent"
+          },
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Skin List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "skins"
+                  ],
+                  "properties": {
+                    "skins": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "./components/schemas/PartialSkinInfo.json"
+                      }
+                    },
+                    "links": {
+                      "type": "object",
+                      "properties": {
+                        "self": {
+                          "type": "string",
+                          "format": "url"
+                        },
+                        "next": {
+                          "description": "for pagination, link to the next page",
+                          "type": "string",
+                          "format": "url"
+                        }
+                      }
+                    },
+                    "search": {
+                      "description": "search query used for this request",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

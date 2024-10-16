@@ -1,0 +1,10 @@
+{
+  "description": "Generic Response",
+  "content": {
+    "application/json": {
+      "schema": {
+        "$ref": "../schemas/GenericResponseBody.json"
+      }
+    }
+  }
+}

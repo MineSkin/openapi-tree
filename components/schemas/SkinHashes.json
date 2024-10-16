@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "required": [
+    "skin"
+  ],
+  "properties": {
+    "skin": {
+      "type": "string",
+      "description": "Skin Hash"
+    },
+    "cape": {
+      "type": "string",
+      "description": "(optional) Cape Hash"
+    }
+  }
+}

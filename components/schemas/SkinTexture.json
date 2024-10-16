@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "required": [
+    "data",
+    "hash",
+    "url"
+  ],
+  "properties": {
+    "data": {
+      "$ref": "./ValueAndSignature.json"
+    },
+    "hash": {
+      "$ref": "./SkinHashes.json"
+    },
+    "url": {
+      "$ref": "./SkinUrls.json"
+    }
+  }
+}

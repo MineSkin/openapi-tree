@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "description": "File Upload Generate Request Body",
+  "allOf": [
+    {
+      "$ref": "./GenerateOptions.json"
+    },
+    {
+      "required": [
+        "file"
+      ],
+      "properties": {
+        "file": {
+          "description": "PNG image file to upload. You should use a client library like [MineSkin Java Client](https://github.com/InventivetalentDev/MineskinClient) to properly handle file uploads. See [github/examples](https://github.com/MineSkin/examples)",
+          "type": "string",
+          "format": "binary",
+          "externalDocs": {
+            "description": "Example implementations",
+            "url": "https://github.com/MineSkin/examples"
+          }
+        }
+      }
+    }
+  ]
+}

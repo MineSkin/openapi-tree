@@ -1,0 +1,28 @@
+{
+  "description": "Generator Success",
+  "content": {
+    "application/json": {
+      "schema": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "skin"
+            ],
+            "properties": {
+              "skin": {
+                "$ref": "../schemas/SkinInfo.json"
+              },
+              "rateLimit": {
+                "$ref": "../schemas/RateLimitInfo.json"
+              }
+            }
+          },
+          {
+            "$ref": "../schemas/SuccessResponseBody.json"
+          }
+        ]
+      }
+    }
+  }
+}

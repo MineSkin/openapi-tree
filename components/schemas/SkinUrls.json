@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "required": [
+    "skin"
+  ],
+  "properties": {
+    "skin": {
+      "type": "string",
+      "description": "Skin Texture Url"
+    },
+    "cape": {
+      "type": "string",
+      "description": "(optional) Cape Texture Url"
+    }
+  }
+}

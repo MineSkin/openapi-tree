@@ -1,0 +1,14 @@
+{
+  "description": "Generic Error",
+  "content": {
+    "application/json": {
+      "schema": {
+        "allOf": [
+          {
+            "$ref": "../schemas/ErrorResponseBody.json"
+          }
+        ]
+      }
+    }
+  }
+}

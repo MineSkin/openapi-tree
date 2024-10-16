@@ -1,0 +1,14 @@
+{
+  "description": "Not Found",
+  "content": {
+    "application/json": {
+      "schema": {
+        "allOf": [
+          {
+            "$ref": "../schemas/ErrorResponseBody.json"
+          }
+        ]
+      }
+    }
+  }
+}

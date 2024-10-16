@@ -44,24 +44,255 @@
         "scheme": "bearer"
       }
     },
+    "parameters": {
+      "apiKey": {
+        "name": "Authorization",
+        "description": "API key from [account.mineskin.org](https://account.mineskin.org/keys)",
+        "example": "Bearer da84de82e960d6c0510088279878c79365ad5118d350d619f20324a5494f156b",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "userAgent": {
+        "name": "User-Agent",
+        "description": "Custom User-Agent for your application, see [user-agent.dev](https://user-agent.dev/) for implementation examples",
+        "example": "ExampleApp/v1.0",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "GenerateErrorResponse": {
+        "description": "Generator Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ErrorResponseBody"
+                },
+                {
+                  "properties": {
+                    "rateLimit": {
+                      "$ref": "#/components/schemas/RateLimitInfo"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "GenerateRateLimitResponse": {
+        "description": "Rate Limited",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ErrorResponseBody"
+                },
+                {
+                  "properties": {
+                    "rateLimit": {
+                      "$ref": "#/components/schemas/RateLimitInfo"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "GenerateSuccessResponse": {
+        "description": "Generator Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "skin"
+                  ],
+                  "properties": {
+                    "skin": {
+                      "$ref": "#/components/schemas/SkinInfo"
+                    },
+                    "rateLimit": {
+                      "$ref": "#/components/schemas/RateLimitInfo"
+                    }
+                  }
+                },
+                {
+                  "$ref": "#/components/schemas/SuccessResponseBody"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "GenerateUserErrorResponse": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ErrorResponseBody"
+                },
+                {
+                  "properties": {
+                    "rateLimit": {
+                      "$ref": "#/components/schemas/RateLimitInfo"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "GenericErrorResponse": {
+        "description": "Generic Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ErrorResponseBody"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "GenericResponse": {
+        "description": "Generic Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GenericResponseBody"
+            }
+          }
+        }
+      },
+      "GenericSuccessResponse": {
+        "description": "Generator Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "skin"
+                  ],
+                  "properties": {
+                    "skin": {
+                      "$ref": "#/components/schemas/SkinInfo"
+                    },
+                    "rateLimit": {
+                      "$ref": "#/components/schemas/RateLimitInfo"
+                    }
+                  }
+                },
+                {
+                  "$ref": "#/components/schemas/SuccessResponseBody"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "NotFoundErrorResponse": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ErrorResponseBody"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "QueueProcessingResponse": {
+        "description": "Job Processing",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "job"
+                  ],
+                  "properties": {
+                    "job": {
+                      "$ref": "#/components/schemas/JobInfo"
+                    },
+                    "rateLimit": {
+                      "$ref": "#/components/schemas/RateLimitInfo"
+                    }
+                  }
+                },
+                {
+                  "$ref": "#/components/schemas/SuccessResponseBody"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "QueueSuccessResponse": {
+        "description": "Job Completed",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "job",
+                    "skin"
+                  ],
+                  "properties": {
+                    "job": {
+                      "$ref": "#/components/schemas/JobInfo"
+                    },
+                    "skin": {
+                      "$ref": "#/components/schemas/SkinInfo"
+                    },
+                    "rateLimit": {
+                      "$ref": "#/components/schemas/RateLimitInfo"
+                    }
+                  }
+                },
+                {
+                  "$ref": "#/components/schemas/SuccessResponseBody"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
     "schemas": {
-      "NextRequest": {
+      "CodeAndMessage": {
         "type": "object",
-        "required": [
-          "absolute",
-          "relative"
-        ],
         "properties": {
-          "absolute": {
-            "type": "number",
-            "format": "timestamp",
-            "description": "Absolute timestamp (in milliseconds) after which the next request can be made",
-            "example": 1726829503123
+          "code": {
+            "type": "string"
           },
-          "relative": {
-            "type": "number",
-            "description": "Relative delay (in milliseconds) after which the next request can be made",
-            "example": 800
+          "message": {
+            "type": "string"
           }
         }
       },
@@ -80,56 +311,6 @@
             "type": "number",
             "description": "Delay between requests (in seconds) - depends on the API key used for this request",
             "example": 1.2
-          }
-        }
-      },
-      "RateLimitInfo": {
-        "type": "object",
-        "required": [
-          "next",
-          "delay"
-        ],
-        "properties": {
-          "next": {
-            "$ref": "#/components/schemas/NextRequest"
-          },
-          "delay": {
-            "$ref": "#/components/schemas/DelayInfo"
-          }
-        }
-      },
-      "JobInfo": {
-        "type": "object",
-        "required": [
-          "uuid",
-          "status"
-        ],
-        "properties": {
-          "uuid": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Job UUID"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "unknown",
-              "waiting",
-              "active",
-              "failed",
-              "completed"
-            ]
-          }
-        }
-      },
-      "CodeAndMessage": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
           }
         }
       },
@@ -241,6 +422,50 @@
           }
         }
       },
+      "JobInfo": {
+        "type": "object",
+        "required": [
+          "uuid",
+          "status"
+        ],
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Job UUID"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "unknown",
+              "waiting",
+              "active",
+              "failed",
+              "completed"
+            ]
+          }
+        }
+      },
+      "NextRequest": {
+        "type": "object",
+        "required": [
+          "absolute",
+          "relative"
+        ],
+        "properties": {
+          "absolute": {
+            "type": "number",
+            "format": "timestamp",
+            "description": "Absolute timestamp (in milliseconds) after which the next request can be made",
+            "example": 1726829503123
+          },
+          "relative": {
+            "type": "number",
+            "description": "Relative delay (in milliseconds) after which the next request can be made",
+            "example": 800
+          }
+        }
+      },
       "PartialSkinInfo": {
         "type": "object",
         "required": [
@@ -273,6 +498,21 @@
           "variant": "classic",
           "views": 1,
           "duplicate": false
+        }
+      },
+      "RateLimitInfo": {
+        "type": "object",
+        "required": [
+          "next",
+          "delay"
+        ],
+        "properties": {
+          "next": {
+            "$ref": "#/components/schemas/NextRequest"
+          },
+          "delay": {
+            "$ref": "#/components/schemas/DelayInfo"
+          }
         }
       },
       "SkinHashes": {
@@ -499,246 +739,6 @@
             "type": "string",
             "description": "Skin Signature"
           }
-        }
-      }
-    },
-    "responses": {
-      "GenerateUserErrorResponse": {
-        "description": "Bad Request",
-        "content": {
-          "application/json": {
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/ErrorResponseBody"
-                },
-                {
-                  "properties": {
-                    "rateLimit": {
-                      "$ref": "#/components/schemas/RateLimitInfo"
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        }
-      },
-      "GenerateErrorResponse": {
-        "description": "Generator Error",
-        "content": {
-          "application/json": {
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/ErrorResponseBody"
-                },
-                {
-                  "properties": {
-                    "rateLimit": {
-                      "$ref": "#/components/schemas/RateLimitInfo"
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        }
-      },
-      "GenericErrorResponse": {
-        "description": "Generic Error",
-        "content": {
-          "application/json": {
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/ErrorResponseBody"
-                }
-              ]
-            }
-          }
-        }
-      },
-      "NotFoundErrorResponse": {
-        "description": "Not Found",
-        "content": {
-          "application/json": {
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/ErrorResponseBody"
-                }
-              ]
-            }
-          }
-        }
-      },
-      "GenerateRateLimitResponse": {
-        "description": "Rate Limited",
-        "content": {
-          "application/json": {
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/ErrorResponseBody"
-                },
-                {
-                  "properties": {
-                    "rateLimit": {
-                      "$ref": "#/components/schemas/RateLimitInfo"
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        }
-      },
-      "QueueProcessingResponse": {
-        "description": "Job Processing",
-        "content": {
-          "application/json": {
-            "schema": {
-              "allOf": [
-                {
-                  "type": "object",
-                  "required": [
-                    "job"
-                  ],
-                  "properties": {
-                    "job": {
-                      "$ref": "#/components/schemas/JobInfo"
-                    },
-                    "rateLimit": {
-                      "$ref": "#/components/schemas/RateLimitInfo"
-                    }
-                  }
-                },
-                {
-                  "$ref": "#/components/schemas/SuccessResponseBody"
-                }
-              ]
-            }
-          }
-        }
-      },
-      "QueueSuccessResponse": {
-        "description": "Job Completed",
-        "content": {
-          "application/json": {
-            "schema": {
-              "allOf": [
-                {
-                  "type": "object",
-                  "required": [
-                    "job",
-                    "skin"
-                  ],
-                  "properties": {
-                    "job": {
-                      "$ref": "#/components/schemas/JobInfo"
-                    },
-                    "skin": {
-                      "$ref": "#/components/schemas/SkinInfo"
-                    },
-                    "rateLimit": {
-                      "$ref": "#/components/schemas/RateLimitInfo"
-                    }
-                  }
-                },
-                {
-                  "$ref": "#/components/schemas/SuccessResponseBody"
-                }
-              ]
-            }
-          }
-        }
-      },
-      "GenerateSuccessResponse": {
-        "description": "Generator Success",
-        "content": {
-          "application/json": {
-            "schema": {
-              "allOf": [
-                {
-                  "type": "object",
-                  "required": [
-                    "skin"
-                  ],
-                  "properties": {
-                    "skin": {
-                      "$ref": "#/components/schemas/SkinInfo"
-                    },
-                    "rateLimit": {
-                      "$ref": "#/components/schemas/RateLimitInfo"
-                    }
-                  }
-                },
-                {
-                  "$ref": "#/components/schemas/SuccessResponseBody"
-                }
-              ]
-            }
-          }
-        }
-      },
-      "GenericResponse": {
-        "description": "Generic Response",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/GenericResponseBody"
-            }
-          }
-        }
-      },
-      "GenericSuccessResponse": {
-        "description": "Generator Success",
-        "content": {
-          "application/json": {
-            "schema": {
-              "allOf": [
-                {
-                  "type": "object",
-                  "required": [
-                    "skin"
-                  ],
-                  "properties": {
-                    "skin": {
-                      "$ref": "#/components/schemas/SkinInfo"
-                    },
-                    "rateLimit": {
-                      "$ref": "#/components/schemas/RateLimitInfo"
-                    }
-                  }
-                },
-                {
-                  "$ref": "#/components/schemas/SuccessResponseBody"
-                }
-              ]
-            }
-          }
-        }
-      }
-    },
-    "parameters": {
-      "apiKey": {
-        "name": "Authorization",
-        "description": "API key from [account.mineskin.org](https://account.mineskin.org/keys)",
-        "example": "Bearer da84de82e960d6c0510088279878c79365ad5118d350d619f20324a5494f156b",
-        "in": "header",
-        "schema": {
-          "type": "string"
-        }
-      },
-      "userAgent": {
-        "name": "User-Agent",
-        "description": "Custom User-Agent for your application, see [user-agent.dev](https://user-agent.dev/) for implementation examples",
-        "example": "ExampleApp/v1.0",
-        "in": "header",
-        "required": true,
-        "schema": {
-          "type": "string"
         }
       }
     }

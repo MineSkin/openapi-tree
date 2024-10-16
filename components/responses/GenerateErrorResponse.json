@@ -1,0 +1,21 @@
+{
+  "description": "Generator Error",
+  "content": {
+    "application/json": {
+      "schema": {
+        "allOf": [
+          {
+            "$ref": "../schemas/ErrorResponseBody.json"
+          },
+          {
+            "properties": {
+              "rateLimit": {
+                "$ref": "../schemas/RateLimitInfo.json"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

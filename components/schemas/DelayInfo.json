@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "required": [
+    "millis"
+  ],
+  "properties": {
+    "millis": {
+      "type": "number",
+      "description": "Delay between requests (in milliseconds) - depends on the API key used for this request",
+      "example": 1200
+    },
+    "seconds": {
+      "type": "number",
+      "description": "Delay between requests (in seconds) - depends on the API key used for this request",
+      "example": 1.2
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "description": "Job Processing",
+  "content": {
+    "application/json": {
+      "schema": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "job"
+            ],
+            "properties": {
+              "job": {
+                "$ref": "../schemas/JobInfo.json"
+              },
+              "rateLimit": {
+                "$ref": "../schemas/RateLimitInfo.json"
+              }
+            }
+          },
+          {
+            "$ref": "../schemas/SuccessResponseBody.json"
+          }
+        ]
+      }
+    }
+  }
+}

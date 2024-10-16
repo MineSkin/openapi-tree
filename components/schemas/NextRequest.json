@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "required": [
+    "absolute",
+    "relative"
+  ],
+  "properties": {
+    "absolute": {
+      "type": "number",
+      "format":"timestamp",
+      "description": "Absolute timestamp (in milliseconds) after which the next request can be made",
+      "example": 1726829503123
+    },
+    "relative": {
+      "type": "number",
+      "description": "Relative delay (in milliseconds) after which the next request can be made",
+      "example": 800
+    }
+  }
+}

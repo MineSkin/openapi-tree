@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "required": [
+    "uuid",
+    "status"
+  ],
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Job UUID"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "unknown",
+        "waiting",
+        "active",
+        "failed",
+        "completed"
+      ]
+    }
+  }
+}

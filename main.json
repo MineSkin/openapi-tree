@@ -121,7 +121,6 @@
         "summary": "Queue skin generation",
         "description": "Queue skin generation",
         "tags": [
-          "generate",
           "queue"
         ],
         "parameters": [
@@ -192,7 +191,7 @@
     },
     "/v2/queue/{jobId}": {
       "get": {
-        "summary": "Get the status of a generator job",
+        "summary": "Get Job Status",
         "description": "Get the status of a generator job",
         "tags": [
           "queue"

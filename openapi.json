@@ -747,7 +747,7 @@
     "/v2/generate": {
       "post": {
         "summary": "Generate a skin",
-        "description": "Queue skin generation and wait for the result.\nNote: this endpoint is not recommended. You should use the queue endpoints instead to submit jobs and check on their status periodically.",
+        "description": "Note: this endpoint is not recommended. You should use the queue endpoints instead to submit jobs and check on their status periodically.\n\nQueue skin generation and wait for the result.",
         "tags": [
           "generate"
         ],
@@ -816,7 +816,7 @@
     "/v2/queue": {
       "post": {
         "summary": "Queue skin generation",
-        "description": "Add a generation request to the queue.\nGenerating a single skin usually takes around 2 seconds, but can take longer depending API load and the number of generator jobs ahead of you in the queue. ",
+        "description": "Add a generation request to the queue.\n\nGenerating a single skin usually takes around 2 seconds, but can take longer depending API load and the number of generator jobs ahead of you in the queue.\n\nUse multipart/form-data to upload image files or application/json for url and user requests.",
         "tags": [
           "generate",
           "queue"
@@ -889,7 +889,7 @@
     "/v2/queue/{jobId}": {
       "get": {
         "summary": "Get Job Status",
-        "description": "Get the status of a generator job.\nThis endpoint is rate limited per job. it's recommended you check on the status of a generator job once every second, at most.",
+        "description": "Get the status of a generator job.\n\nThis endpoint is rate limited per job. it's recommended you check on the status of a generator job once every second, at most.",
         "tags": [
           "queue"
         ],

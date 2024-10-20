@@ -712,10 +712,11 @@
           },
           {
             "required": [
-              "uuid"
+              "user"
             ],
             "properties": {
-              "uuid": {
+              "user": {
+                "description": "Player UUID",
                 "type": "string",
                 "minLength": 32,
                 "maxLength": 36

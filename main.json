@@ -215,9 +215,6 @@
           }
         ],
         "responses": {
-          "202": {
-            "$ref": "./components/responses/QueueProcessingResponse.json"
-          },
           "200": {
             "$ref": "./components/responses/QueueSuccessResponse.json"
           },

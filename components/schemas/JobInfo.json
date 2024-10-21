@@ -12,6 +12,7 @@
     },
     "status": {
       "type": "string",
+      "description": "Job status\n\n- unknown: The job status is unknown\n- waiting: The job is waiting to be processed\n- active: The job is currently being processed\n- failed: The job has failed. The root 'errors' array may contain more details\n- completed: The job has completed. The 'result' field will contain the job result",
       "enum": [
         "unknown",
         "waiting",
@@ -19,6 +20,10 @@
         "failed",
         "completed"
       ]
+    },
+    "result": {
+      "type": "string",
+      "description": "If the job is finished, this will return the result of the job (e.g. the skin UUID)"
     }
   }
 }

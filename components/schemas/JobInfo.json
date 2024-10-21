@@ -1,14 +1,14 @@
 {
   "type": "object",
   "required": [
-    "uuid",
+    "id",
     "status"
   ],
   "properties": {
-    "uuid": {
+    "id": {
       "type": "string",
       "format": "uuid",
-      "description": "Job UUID"
+      "description": "Job ID"
     },
     "status": {
       "type": "string",

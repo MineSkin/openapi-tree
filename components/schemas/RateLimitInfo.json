@@ -10,6 +10,9 @@
     },
     "delay": {
       "$ref": "./DelayInfo.json"
+    },
+    "limit": {
+      "$ref": "./LimitInfo.json"
     }
   }
 }

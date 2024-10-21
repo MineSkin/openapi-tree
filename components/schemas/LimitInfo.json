@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "required": [
+    "limit",
+    "remaining"
+  ],
+  "properties": {
+    "limit": {
+      "type": "number",
+      "description": "Limit of requests in the current window (usually 1 minute)",
+      "example": 60
+    },
+    "remaining": {
+      "type": "number",
+      "description": "Remaining requests in the current window",
+      "example": 58
+    }
+  }
+}

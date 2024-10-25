@@ -15,6 +15,9 @@
               },
               "rateLimit": {
                 "$ref": "../schemas/RateLimitInfo.json"
+              },
+              "usage": {
+                "$ref": "../schemas/UsageInfo.json"
               }
             }
           },

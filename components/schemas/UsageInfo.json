@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "required": [
+  ],
+  "properties": {
+    "credits": {
+      "$ref": "./CreditsUsageInfo.json"
+    },
+    "metered": {
+      "$ref": "./MeteredUsageInfo.json"
+    }
+  }
+}

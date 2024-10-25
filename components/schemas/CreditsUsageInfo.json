@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "required": [
+    "used",
+    "remaining"
+  ],
+  "properties": {
+    "used": {
+      "type": "number",
+      "description": "Credits used for this request",
+      "example": 1
+    },
+    "remaining": {
+      "type": "number",
+      "description": "Remaining credits",
+      "example": 23
+    }
+  }
+}

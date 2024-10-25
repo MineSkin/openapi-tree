@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "required": [
+    "used"
+  ],
+  "properties": {
+    "used": {
+      "type": "number",
+      "description": "Number of metered units used for this request",
+      "example": 1
+    }
+  }
+}

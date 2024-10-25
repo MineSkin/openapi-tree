@@ -7,12 +7,12 @@
   "properties": {
     "limit": {
       "type": "number",
-      "description": "Limit of requests in the current window (usually 1 minute)",
+      "description": "Limit of requests in the current window (usually 1 minute). Same as the 'X-RateLimit-Limit' header",
       "example": 60
     },
     "remaining": {
       "type": "number",
-      "description": "Remaining requests in the current window",
+      "description": "Remaining requests in the current window. Same as the 'X-RateLimit-Remaining' header",
       "example": 58
     }
   }

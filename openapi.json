@@ -56,7 +56,7 @@
       },
       "userAgent": {
         "name": "User-Agent",
-        "description": "Custom User-Agent for your application, see [user-agent.dev](https://user-agent.dev/) for implementation examples",
+        "description": "Custom User-Agent for your application, see [user-agent.dev](https://user-agent.dev/) for implementation examples. Alternatively you can also use the 'MineSkin-User-Agent' header.",
         "example": "ExampleApp/v1.0",
         "in": "header",
         "required": true,

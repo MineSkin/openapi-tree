@@ -390,6 +390,9 @@
           },
           "404": {
             "$ref": "./components/responses/NotFoundErrorResponse.json"
+          },
+          "403": {
+            "$ref": "./components/responses/ForbiddenErrorResponse.json"
           }
         }
       }
@@ -422,6 +425,9 @@
           },
           "404": {
             "$ref": "./components/responses/NotFoundErrorResponse.json"
+          },
+          "403": {
+            "$ref": "./components/responses/ForbiddenErrorResponse.json"
           }
         }
       }
@@ -454,6 +460,9 @@
           },
           "404": {
             "$ref": "./components/responses/NotFoundErrorResponse.json"
+          },
+          "403": {
+            "$ref": "./components/responses/ForbiddenErrorResponse.json"
           }
         }
       }
@@ -486,6 +495,9 @@
           },
           "404": {
             "$ref": "./components/responses/NotFoundErrorResponse.json"
+          },
+          "403": {
+            "$ref": "./components/responses/ForbiddenErrorResponse.json"
           }
         }
       }

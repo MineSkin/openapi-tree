@@ -396,6 +396,38 @@
           }
         }
       }
+    },
+     "/v2/me/client": {
+      "get": {
+        "summary": "Get the current client",
+        "description": "Get information about the current client",
+        "tags": [
+          "user"
+        ],
+        "parameters": [
+          {
+            "$ref": "./components/parameters/userAgent.json"
+          },
+          {
+            "$ref": "./components/parameters/apiKey.json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client Info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./components/schemas/MeClientInfo.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "./components/responses/NotFoundErrorResponse.json"
+          }
+        }
+      }
     }
   }
 }

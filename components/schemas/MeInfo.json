@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "required": [
+    "user",
+    "grants"
+  ],
+  "properties": {
+    "user": {
+      "type": "string",
+      "description": "User UUID",
+      "example": "ef4c52b01fea4715982d8e67fd93ef2d"
+    },
+    "grants": {
+      "type": "object",
+      "description": "Grants for this user",
+      "example": {
+        "delay": 3,
+        "per_minute": 20,
+        "concurrency": 1,
+        "priority": 0,
+        "ad_free": true,
+        "private_skins": true
+      }
+    }
+  }
+}

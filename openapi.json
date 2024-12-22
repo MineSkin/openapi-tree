@@ -498,6 +498,32 @@
           }
         }
       },
+      "MeInfo": {
+        "type": "object",
+        "required": [
+          "user",
+          "grants"
+        ],
+        "properties": {
+          "user": {
+            "type": "string",
+            "description": "User UUID",
+            "example": "ef4c52b01fea4715982d8e67fd93ef2d"
+          },
+          "grants": {
+            "type": "object",
+            "description": "Grants for this user",
+            "example": {
+              "delay": 3,
+              "per_minute": 20,
+              "concurrency": 1,
+              "priority": 0,
+              "ad_free": true,
+              "private_skins": true
+            }
+          }
+        }
+      },
       "MeteredUsageInfo": {
         "type": "object",
         "required": [
@@ -1137,6 +1163,38 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/v2/me": {
+      "get": {
+        "summary": "Get the current user",
+        "description": "Get information about the current user (i.e. the user associated with the API key)",
+        "tags": [
+          "user"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userAgent"
+          },
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeInfo"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundErrorResponse"
           }
         }
       }

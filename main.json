@@ -394,6 +394,38 @@
         }
       }
     },
+    "/v2/me/apikey": {
+      "get": {
+        "summary": "Get the current API key",
+        "description": "Get information about the API key used for this request",
+        "tags": [
+          "user"
+        ],
+        "parameters": [
+          {
+            "$ref": "./components/parameters/userAgent.json"
+          },
+          {
+            "$ref": "./components/parameters/apiKey.json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "API Key Info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./components/schemas/MeKeyInfo.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "./components/responses/NotFoundErrorResponse.json"
+          }
+        }
+      }
+    },
     "/v2/me/client": {
       "get": {
         "summary": "Get the current client",

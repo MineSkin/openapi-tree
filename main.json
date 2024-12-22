@@ -64,8 +64,7 @@
         "requestBody": {
           "required": true,
           "content": {
-
-            "application/json":{
+            "application/json": {
               "schema": {
                 "oneOf": [
                   {
@@ -79,7 +78,7 @@
             },
             "multipart/form-data": {
               "schema": {
-                "description":"File Upload Generate Request",
+                "description": "File Upload Generate Request",
                 "oneOf": [
                   {
                     "$ref": "./components/schemas/UploadGenerateBody.json"
@@ -135,8 +134,7 @@
         "requestBody": {
           "required": true,
           "content": {
-
-            "application/json":{
+            "application/json": {
               "schema": {
                 "oneOf": [
                   {
@@ -150,7 +148,7 @@
             },
             "multipart/form-data": {
               "schema": {
-                "description":"File Upload Generate Request",
+                "description": "File Upload Generate Request",
                 "oneOf": [
                   {
                     "$ref": "./components/schemas/UploadGenerateBody.json"
@@ -230,7 +228,6 @@
         }
       }
     },
-
     "/v2/delay": {
       "get": {
         "summary": "Get the current delay",
@@ -397,7 +394,7 @@
         }
       }
     },
-     "/v2/me/client": {
+    "/v2/me/client": {
       "get": {
         "summary": "Get the current client",
         "description": "Get information about the current client",
@@ -419,6 +416,38 @@
               "application/json": {
                 "schema": {
                   "$ref": "./components/schemas/MeClientInfo.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "./components/responses/NotFoundErrorResponse.json"
+          }
+        }
+      }
+    },
+    "/v2/me/credits": {
+      "get": {
+        "summary": "Get user credits",
+        "description": "Get information about the current user's credits",
+        "tags": [
+          "user"
+        ],
+        "parameters": [
+          {
+            "$ref": "./components/parameters/userAgent.json"
+          },
+          {
+            "$ref": "./components/parameters/apiKey.json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Credits Info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./components/schemas/MeCreditsInfo.json"
                 }
               }
             }

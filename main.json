@@ -188,8 +188,8 @@
         },
         "x-codeSamples": [
           {
-            "lang": "java",
-            "label": "MineSkinClient",
+            "lang": "Java",
+            "label": "MineSkin Client",
             "source": {
               "$ref": "./code_samples/queue_skin_generation/mineskin-client.java"
             }
@@ -237,8 +237,8 @@
         },
         "x-codeSamples": [
           {
-            "lang": "java",
-            "label": "MineSkinClient",
+            "lang": "Java",
+            "label": "MineSkin Client",
             "source": {
               "$ref": "./code_samples/get_job/mineskin-client.java"
             }
@@ -315,8 +315,8 @@
         },
         "x-codeSamples": [
           {
-            "lang": "java",
-            "label": "MineSkinClient",
+            "lang": "Java",
+            "label": "MineSkin Client",
             "source": {
               "$ref": "./code_samples/get_skin_by_uuid/mineskin-client.java"
             }

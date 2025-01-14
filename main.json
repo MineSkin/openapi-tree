@@ -294,7 +294,16 @@
           "404": {
             "$ref": "./components/responses/NotFoundErrorResponse.json"
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "java",
+            "label": "MineSkinClient",
+            "source": {
+              "$ref": "./code_samples/get_skin_by_uuid/mineskin-client.java"
+            }
+          }
+        ]
       }
     },
     "/v2/skins": {

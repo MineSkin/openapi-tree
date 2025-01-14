@@ -45,7 +45,7 @@ async function processDir(output, path_, parent) {
         console.log(e);
         return;
     }
-    if(!output) {
+    if (!output) {
         output = {};
     }
     for (const file of dir) {
@@ -72,14 +72,14 @@ async function processDir(output, path_, parent) {
             console.debug(`Merging ${ file } into ${ parent }`);
             await cleanUpRefs(content, path_);
             output[parent][file.replace('.json', '')] = content;
-
         }
     }
 }
 
-async function cleanUpRefs(obj, contextPath0, strict = false) {
+async function cleanUpRefs(obj, contextPath0, strict = false, path = '',) {
     let contextPath = contextPath0;
-    console.debug(`Cleaning up refs ${ strict }`);
+    //console.debug(`Cleaning up refs ${ strict }`);
+    // console.log(path)
     for (const key in obj) {
         if (key === '$ref') {
             console.log('context', contextPath)
@@ -104,8 +104,12 @@ async function cleanUpRefs(obj, contextPath0, strict = false) {
                     console.debug('replace')
                 }
             }
+        } else if (key === 'source' && path.includes('x-codeSamples') && typeof obj[key] === 'object' && '$ref' in obj[key]) {
+            console.log('codeSamples', key, obj, obj[key]);
+            const content = await fs.readFile(obj[key]['$ref'], 'utf8');
+            obj[key] = content;
         } else if (typeof obj[key] === 'object') {
-            await cleanUpRefs(obj[key], contextPath0, strict);
+            await cleanUpRefs(obj[key], contextPath0, strict, path + '.' + key);
         }
     }
 }

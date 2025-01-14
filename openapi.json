@@ -1304,7 +1304,14 @@
           "404": {
             "$ref": "#/components/responses/NotFoundErrorResponse"
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "java",
+            "label": "MineSkinClient",
+            "source": "MineSkinClient client = MineSkinClient.builder()\n        .requestHandler(JsoupRequestHandler::new)\n        .userAgent(\"MyMineSkinApp/v1.0\")\n        .apiKey(\"<TOKEN>\")\n        .build();\nclient.skins().get(\"<skin uuid>\").thenAccept(skins->{});"
+          }
+        ]
       }
     },
     "/v2/skins": {

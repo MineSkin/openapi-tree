@@ -1,7 +1,7 @@
 MineSkinClient client = MineSkinClient.builder()
         .requestHandler(JsoupRequestHandler::new)
         .userAgent("MyMineSkinApp/v1.0")
-        .apiKey("<TOKEN>")
+        .apiKey("<api key>")
         .build();
 GenerateRequest request = GenerateRequest.upload(file)
         .name("My Skin")

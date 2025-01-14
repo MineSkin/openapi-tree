@@ -3,4 +3,6 @@ MineSkinClient client = MineSkinClient.builder()
         .userAgent("MyMineSkinApp/v1.0")
         .apiKey("<TOKEN>")
         .build();
-client.skins().get("<skin uuid>").thenAccept(skins->{});
+client.skins().get("<skin uuid>").thenAccept(response -> {
+    Skin skin = response.getSkin();
+});

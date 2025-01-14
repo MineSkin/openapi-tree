@@ -185,7 +185,16 @@
           "500": {
             "$ref": "./components/responses/GenerateErrorResponse.json"
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "java",
+            "label": "MineSkinClient",
+            "source": {
+              "$ref": "./code_samples/queue_skin_generation/mineskin-client.java"
+            }
+          }
+        ]
       }
     },
     "/v2/queue/{jobId}": {
@@ -225,7 +234,16 @@
           "500": {
             "$ref": "./components/responses/GenerateErrorResponse.json"
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "java",
+            "label": "MineSkinClient",
+            "source": {
+              "$ref": "./code_samples/get_job/mineskin-client.java"
+            }
+          }
+        ]
       }
     },
     "/v2/delay": {

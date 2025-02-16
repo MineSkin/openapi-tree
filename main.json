@@ -411,7 +411,7 @@
               "application/json": {
                 "schema": {
                   "required": [
-                    "skins"
+                    "capes"
                   ],
                   "properties": {
                     "capes": {

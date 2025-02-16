@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "required": [
+    "uuid",
+    "alias",
+    "url"
+  ],
+  "properties": {
+    "uuid": {
+      "type": "string"
+    },
+    "alias": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "supported": {
+      "type": "boolean"
+    }
+  },
+  "example": {
+    "uuid": "ef9e95b6-48a3-4fd7-93d4-7e7d9448d2f1",
+    "alias": "15th Anniversary",
+    "url": "http://textures.minecraft.net/texture/cd9d82ab17fd92022dbd4a86cde4c382a7540e117fae7b9a2853658505a80625",
+    "supported": true
+  }
+}

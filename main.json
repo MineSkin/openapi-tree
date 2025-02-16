@@ -389,6 +389,45 @@
         }
       }
     },
+    "/v2/capes": {
+      "get": {
+        "summary": "Get a list of known capes",
+        "description": "Get a list of known capes",
+        "tags": [
+          "capes"
+        ],
+        "parameters": [
+          {
+            "$ref": "./components/parameters/userAgent.json"
+          },
+          {
+            "$ref": "./components/parameters/apiKey.json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cape List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "skins"
+                  ],
+                  "properties": {
+                    "capes": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "./components/schemas/KnownCape.json"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v2/me": {
       "get": {
         "summary": "Get the current user",

@@ -78,6 +78,7 @@
             },
             "multipart/form-data": {
               "schema": {
+                "type": "object",
                 "description": "File Upload Generate Request",
                 "oneOf": [
                   {
@@ -93,6 +94,7 @@
               },
               "encoding": {
                 "file": {
+                  "style": "form",
                   "contentType": "image/png"
                 }
               }
@@ -163,6 +165,7 @@
               },
               "encoding": {
                 "file": {
+                  "style": "form",
                   "contentType": "image/png"
                 }
               }

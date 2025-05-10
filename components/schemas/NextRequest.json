@@ -4,6 +4,7 @@
     "absolute",
     "relative"
   ],
+  "description": "Information about when the next request can be made. Use this to determine when to make the next request.",
   "properties": {
     "absolute": {
       "type": "number",

@@ -4,6 +4,7 @@
     "limit",
     "remaining"
   ],
+  "description": "Information about the rate limit for the current request.",
   "properties": {
     "limit": {
       "type": "number",

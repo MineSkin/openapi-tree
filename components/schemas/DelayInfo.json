@@ -3,6 +3,7 @@
   "required": [
     "millis"
   ],
+  "description": "Information about the delay between requests. These numbers will remain the same for all requests with the same API key. You can use this to send requests on a schedule, for example.",
   "properties": {
     "millis": {
       "type": "number",

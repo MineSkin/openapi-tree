@@ -1037,6 +1037,7 @@
             ],
             "properties": {
               "url": {
+                "description": "URL to a PNG image. Also supports data URLs (base64-encoded images).",
                 "type": "string"
               }
             },

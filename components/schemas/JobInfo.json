@@ -33,7 +33,7 @@
     "eta": {
       "required": false,
       "type": "number",
-      "description": "Estimated timestamp (in milliseconds) when the job will be completed",
+      "description": "Estimated timestamp (in milliseconds) when the job will be completed. Only present after first submitting the job.",
       "example": 1726829603123
     }
   }

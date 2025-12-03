@@ -240,6 +240,27 @@
           }
         }
       },
+      "QueueListResponse": {
+        "description": "Queue List",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "jobs"
+              ],
+              "properties": {
+                "jobs": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobInfo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "QueueProcessingResponse": {
         "description": "Job Processing",
         "content": {
@@ -1184,6 +1205,35 @@
       }
     },
     "/v2/queue": {
+      "get": {
+        "summary": "List queue jobs",
+        "description": "Get a list of recent queue jobs submitted by the current user.",
+        "tags": [
+          "queue"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userAgent"
+          },
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/QueueListResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/GenerateUserErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/GenerateRateLimitResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/GenerateErrorResponse"
+          }
+        }
+      },
       "post": {
         "summary": "Queue skin generation",
         "description": "Add a generation request to the queue.\n\nGenerating a single skin usually takes around 2 seconds, but can take longer depending API load and the number of generator jobs ahead of you in the queue.\n\nUse multipart/form-data to upload image files or application/json for url and user requests.",
@@ -1382,7 +1432,7 @@
           {
             "lang": "Java",
             "label": "MineSkin Client",
-            "source": "MineSkinClient client = MineSkinClient.builder()\r\n        .requestHandler(JsoupRequestHandler::new)\r\n        .userAgent(\"MyMineSkinApp/v1.0\")\r\n        .apiKey(\"<api key>\")\r\n        .build();\r\nclient.skins().get(\"<skin uuid>\").thenAccept(response -> {\r\n    Skin skin = response.getSkin();\r\n});"
+            "source": "MineSkinClient client = MineSkinClient.builder()\n        .requestHandler(JsoupRequestHandler::new)\n        .userAgent(\"MyMineSkinApp/v1.0\")\n        .apiKey(\"<api key>\")\n        .build();\nclient.skins().get(\"<skin uuid>\").thenAccept(response -> {\n    Skin skin = response.getSkin();\n});"
           }
         ]
       }

@@ -1,0 +1,21 @@
+{
+  "description": "Queue List",
+  "content": {
+    "application/json": {
+      "schema": {
+        "type": "object",
+        "required": [
+          "jobs"
+        ],
+        "properties": {
+          "jobs": {
+            "type": "array",
+            "items": {
+              "$ref": "../schemas/JobInfo.json"
+            }
+          }
+        }
+      }
+    }
+  }
+}

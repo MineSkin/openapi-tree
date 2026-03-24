@@ -11,7 +11,8 @@
   ],
   "properties": {
     "uuid": {
-      "type": "string"
+      "type": "string",
+      "format": "uuid"
     },
     "name": {
       "type": "string"

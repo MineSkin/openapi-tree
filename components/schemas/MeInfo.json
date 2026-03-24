@@ -7,7 +7,7 @@
   "properties": {
     "user": {
       "type": "string",
-      "description": "User UUID",
+      "description": "User UUID (stripped)",
       "example": "ef4c52b01fea4715982d8e67fd93ef2d"
     },
     "grants": {

@@ -8,7 +8,9 @@
   ],
   "properties": {
     "uuid": {
-      "type": "string"
+      "description": "Skin UUID (stripped)",
+      "type": "string",
+      "format": "uuid"
     },
     "name": {
       "type": "string"
@@ -28,7 +30,6 @@
     "name": "Test Skin",
     "visibility": "public",
     "variant": "classic",
-    "views": 1,
-    "duplicate": false
+    "views": 1
   }
 }

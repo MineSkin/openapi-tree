@@ -29,6 +29,12 @@
     },
     {
       "name": "skins"
+    },
+    {
+      "name": "capes"
+    },
+    {
+      "name": "user"
     }
   ],
   "security": [

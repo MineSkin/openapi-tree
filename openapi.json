@@ -29,6 +29,12 @@
     },
     {
       "name": "skins"
+    },
+    {
+      "name": "capes"
+    },
+    {
+      "name": "user"
     }
   ],
   "security": [
@@ -501,8 +507,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "format": "uuid",
-            "description": "Job ID"
+            "description": "Job ID (Note: not necessarily a UUID)"
           },
           "status": {
             "type": "string",
@@ -525,7 +530,6 @@
             "example": 1726829503123
           },
           "eta": {
-            "required": false,
             "type": "number",
             "description": "Estimated timestamp (in milliseconds) when the job will be completed. Only present after first submitting the job.",
             "example": 1726829603123
@@ -717,7 +721,7 @@
         "properties": {
           "user": {
             "type": "string",
-            "description": "User UUID",
+            "description": "User UUID (stripped)",
             "example": "ef4c52b01fea4715982d8e67fd93ef2d"
           },
           "grants": {
@@ -832,7 +836,6 @@
         "properties": {
           "absolute": {
             "type": "number",
-            "format": "timestamp",
             "description": "Absolute timestamp (in milliseconds) after which the next request can be made",
             "example": 1726829503123
           },
@@ -853,7 +856,9 @@
         ],
         "properties": {
           "uuid": {
-            "type": "string"
+            "description": "Skin UUID (stripped)",
+            "type": "string",
+            "format": "uuid"
           },
           "name": {
             "type": "string"
@@ -873,8 +878,7 @@
           "name": "Test Skin",
           "visibility": "public",
           "variant": "classic",
-          "views": 1,
-          "duplicate": false
+          "views": 1
         }
       },
       "PerWindowLimitInfo": {
@@ -977,7 +981,8 @@
         ],
         "properties": {
           "uuid": {
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "name": {
             "type": "string"
@@ -1139,7 +1144,6 @@
       },
       "UsageInfo": {
         "type": "object",
-        "required": [],
         "properties": {
           "credits": {
             "$ref": "#/components/schemas/CreditsUsageInfo"

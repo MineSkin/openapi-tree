@@ -286,7 +286,8 @@
     },
     "/v2/delay": {
       "get": {
-        "summary": "Get the current delay",
+        "deprecated": true,
+        "summary": "Get the current delay. Deprecated, no longer used with the new queue system.",
         "tags": [
           "delay"
         ],

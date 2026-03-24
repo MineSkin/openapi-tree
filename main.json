@@ -571,42 +571,6 @@
           }
         }
       }
-    },
-    "/v2/me/credits": {
-      "get": {
-        "deprecated": true,
-        "summary": "Get user credits",
-        "description": "Get information about the current user's credits",
-        "tags": [
-          "user"
-        ],
-        "parameters": [
-          {
-            "$ref": "./components/parameters/userAgent.json"
-          },
-          {
-            "$ref": "./components/parameters/apiKey.json"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Credits Info",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "./components/schemas/MeCreditsInfo.json"
-                }
-              }
-            }
-          },
-          "404": {
-            "$ref": "./components/responses/NotFoundErrorResponse.json"
-          },
-          "403": {
-            "$ref": "./components/responses/ForbiddenErrorResponse.json"
-          }
-        }
-      }
     }
   }
 }

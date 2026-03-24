@@ -16,10 +16,13 @@
       "example": {
         "delay": 3,
         "per_minute": 20,
+        "per_hour": 100,
         "concurrency": 1,
         "priority": 0,
         "ad_free": true,
-        "private_skins": true
+        "private_skins": true,
+        "capes": true,
+        "plan": "free"
       }
     }
   }

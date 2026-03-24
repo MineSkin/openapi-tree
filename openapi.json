@@ -1429,7 +1429,8 @@
     "/v2/delay": {
       "get": {
         "deprecated": true,
-        "summary": "Get the current delay. Deprecated, no longer used with the new queue system.",
+        "summary": "Get the current delay",
+        "description": "Deprecated, no longer used with the new queue system.",
         "tags": [
           "delay"
         ],

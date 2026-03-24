@@ -3,7 +3,7 @@
   "required": [
     "minute"
   ],
-  "description": "Rate Limit info for applicable time windows",
+  "description": "Rate Limit info for applicable time windows. The 'minute' fields mirror the 'X-Rate-Limit-' headers.",
   "properties": {
     "minute": {
       "$ref": "./LimitInfo.json"

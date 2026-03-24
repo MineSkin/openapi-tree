@@ -570,12 +570,12 @@
         "properties": {
           "limit": {
             "type": "number",
-            "description": "Limit of requests in the current window (usually 1 minute). Same as the 'X-RateLimit-Limit' header",
+            "description": "Limit of requests in the current window (1 minute/1 hour).",
             "example": 60
           },
           "remaining": {
             "type": "number",
-            "description": "Remaining requests in the current window. Same as the 'X-RateLimit-Remaining' header",
+            "description": "Remaining requests in the current window.",
             "example": 58
           },
           "used": {
@@ -585,7 +585,7 @@
           },
           "reset": {
             "type": "number",
-            "description": "UNIX epoch timestamp (seconds) when the rate limit will reset. Same as the 'X-RateLimit-Reset' header",
+            "description": "UNIX epoch timestamp (seconds) when the rate limit will reset.",
             "example": 1746869295
           }
         }
@@ -882,7 +882,7 @@
         "required": [
           "minute"
         ],
-        "description": "Rate Limit info for applicable time windows",
+        "description": "Rate Limit info for applicable time windows. The 'minute' fields mirror the 'X-Rate-Limit-' headers.",
         "properties": {
           "minute": {
             "$ref": "#/components/schemas/LimitInfo"
@@ -912,7 +912,37 @@
                 "$ref": "#/components/schemas/PerWindowLimitInfo"
               },
               {
-                "$ref": "#/components/schemas/LimitInfo"
+                "type": "object",
+                "required": [
+                  "limit",
+                  "remaining"
+                ],
+                "properties": {
+                  "limit": {
+                    "deprecated": true,
+                    "type": "number",
+                    "description": "Deprecated: Use the fields in 'minute' and 'hour' instead to get information about the individual rate limits.",
+                    "example": 60
+                  },
+                  "remaining": {
+                    "deprecated": true,
+                    "type": "number",
+                    "description": "Deprecated: Use the fields in 'minute' and 'hour' instead to get information about the individual rate limits.",
+                    "example": 58
+                  },
+                  "used": {
+                    "deprecated": true,
+                    "type": "number",
+                    "description": "Deprecated: Use the fields in 'minute' and 'hour' instead to get information about the individual rate limits.",
+                    "example": 2
+                  },
+                  "reset": {
+                    "deprecated": true,
+                    "type": "number",
+                    "description": "Deprecated: Use the fields in 'minute' and 'hour' instead to get information about the individual rate limits.",
+                    "example": 1746869295
+                  }
+                }
               }
             ]
           }

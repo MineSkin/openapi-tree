@@ -8,12 +8,12 @@
   "properties": {
     "limit": {
       "type": "number",
-      "description": "Limit of requests in the current window (usually 1 minute). Same as the 'X-RateLimit-Limit' header",
+      "description": "Limit of requests in the current window (1 minute/1 hour).",
       "example": 60
     },
     "remaining": {
       "type": "number",
-      "description": "Remaining requests in the current window. Same as the 'X-RateLimit-Remaining' header",
+      "description": "Remaining requests in the current window.",
       "example": 58
     },
     "used": {
@@ -23,7 +23,7 @@
     },
     "reset": {
       "type": "number",
-      "description": "UNIX epoch timestamp (seconds) when the rate limit will reset. Same as the 'X-RateLimit-Reset' header",
+      "description": "UNIX epoch timestamp (seconds) when the rate limit will reset.",
       "example": 1746869295
     }
   }

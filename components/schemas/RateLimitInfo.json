@@ -18,7 +18,37 @@
           "$ref": "./PerWindowLimitInfo.json"
         },
         {
-          "$ref": "./LimitInfo.json"
+          "type": "object",
+          "required": [
+            "limit",
+            "remaining"
+          ],
+          "properties": {
+            "limit": {
+              "deprecated": true,
+              "type": "number",
+              "description": "Deprecated: Use the fields in 'minute' and 'hour' instead to get information about the individual rate limits.",
+              "example": 60
+            },
+            "remaining": {
+              "deprecated": true,
+              "type": "number",
+              "description": "Deprecated: Use the fields in 'minute' and 'hour' instead to get information about the individual rate limits.",
+              "example": 58
+            },
+            "used": {
+              "deprecated": true,
+              "type": "number",
+              "description": "Deprecated: Use the fields in 'minute' and 'hour' instead to get information about the individual rate limits.",
+              "example": 2
+            },
+            "reset": {
+              "deprecated": true,
+              "type": "number",
+              "description": "Deprecated: Use the fields in 'minute' and 'hour' instead to get information about the individual rate limits.",
+              "example": 1746869295
+            }
+          }
         }
       ]
     }

@@ -578,6 +578,11 @@
             "description": "Remaining requests in the current window. Same as the 'X-RateLimit-Remaining' header",
             "example": 58
           },
+          "used": {
+            "type": "number",
+            "description": "Number of requests used in the current window.",
+            "example": 2
+          },
           "reset": {
             "type": "number",
             "description": "UNIX epoch timestamp (seconds) when the rate limit will reset. Same as the 'X-RateLimit-Reset' header",
@@ -872,11 +877,27 @@
           "duplicate": false
         }
       },
+      "PerWindowLimitInfo": {
+        "type": "object",
+        "required": [
+          "minute"
+        ],
+        "description": "Rate Limit info for applicable time windows",
+        "properties": {
+          "minute": {
+            "$ref": "#/components/schemas/LimitInfo"
+          },
+          "hour": {
+            "$ref": "#/components/schemas/LimitInfo"
+          }
+        }
+      },
       "RateLimitInfo": {
         "type": "object",
         "required": [
           "next",
-          "delay"
+          "delay",
+          "limit"
         ],
         "properties": {
           "next": {
@@ -886,7 +907,14 @@
             "$ref": "#/components/schemas/DelayInfo"
           },
           "limit": {
-            "$ref": "#/components/schemas/LimitInfo"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PerWindowLimitInfo"
+              },
+              {
+                "$ref": "#/components/schemas/LimitInfo"
+              }
+            ]
           }
         }
       },

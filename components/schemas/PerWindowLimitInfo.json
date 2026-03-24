@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": [
+    "minute"
+  ],
+  "description": "Rate Limit info for applicable time windows",
+  "properties": {
+    "minute": {
+      "$ref": "./LimitInfo.json"
+    },
+    "hour": {
+      "$ref": "./LimitInfo.json"
+    }
+  }
+}

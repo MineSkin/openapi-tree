@@ -2,7 +2,8 @@
   "type": "object",
   "required": [
     "next",
-    "delay"
+    "delay",
+    "limit"
   ],
   "properties": {
     "next": {
@@ -12,7 +13,14 @@
       "$ref": "./DelayInfo.json"
     },
     "limit": {
-      "$ref": "./LimitInfo.json"
+      "allOf": [
+        {
+          "$ref": "./PerWindowLimitInfo.json"
+        },
+        {
+          "$ref": "./LimitInfo.json"
+        }
+      ]
     }
   }
 }

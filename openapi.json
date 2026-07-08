@@ -646,17 +646,34 @@
           "alias": {
             "type": "string"
           },
+          "hash": {
+            "type": "string",
+            "description": "Texture hash of the cape"
+          },
           "url": {
             "type": "string"
           },
+          "support": {
+            "type": "string",
+            "description": "Availability level of this cape for skin generation.\n\n- public: anyone (with the `capes` grant) may generate with this cape\n- owner: only usable if the requesting user has a linked Minecraft account that owns the cape\n- none: globally unavailable / hidden, cannot be used by anyone",
+            "enum": [
+              "public",
+              "owner",
+              "none"
+            ]
+          },
           "supported": {
-            "type": "boolean"
+            "type": "boolean",
+            "deprecated": true,
+            "description": "Whether this cape is publicly usable. Deprecated - use `support` instead (equivalent to `support === \"public\"`)."
           }
         },
         "example": {
           "uuid": "ef9e95b6-48a3-4fd7-93d4-7e7d9448d2f1",
           "alias": "15th Anniversary",
+          "hash": "cd9d82ab17fd92022dbd4a86cde4c382a7540e117fae7b9a2853658505a80625",
           "url": "http://textures.minecraft.net/texture/cd9d82ab17fd92022dbd4a86cde4c382a7540e117fae7b9a2853658505a80625",
+          "support": "public",
           "supported": true
         }
       },

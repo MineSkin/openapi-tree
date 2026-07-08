@@ -1,0 +1,35 @@
+{
+  "description": "Batch Accepted",
+  "content": {
+    "application/json": {
+      "schema": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "batch"
+            ],
+            "properties": {
+              "batch": {
+                "type": "array",
+                "description": "Results for each item in the batch, in the same order as the request. Each item is processed independently.",
+                "items": {
+                  "$ref": "../schemas/BatchJobItem.json"
+                }
+              },
+              "rateLimit": {
+                "$ref": "../schemas/RateLimitInfo.json"
+              },
+              "usage": {
+                "$ref": "../schemas/UsageInfo.json"
+              }
+            }
+          },
+          {
+            "$ref": "../schemas/SuccessResponseBody.json"
+          }
+        ]
+      }
+    }
+  }
+}

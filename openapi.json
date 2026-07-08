@@ -72,6 +72,41 @@
       }
     },
     "responses": {
+      "BatchQueueResponse": {
+        "description": "Batch Accepted",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "batch"
+                  ],
+                  "properties": {
+                    "batch": {
+                      "type": "array",
+                      "description": "Results for each item in the batch, in the same order as the request. Each item is processed independently.",
+                      "items": {
+                        "$ref": "#/components/schemas/BatchJobItem"
+                      }
+                    },
+                    "rateLimit": {
+                      "$ref": "#/components/schemas/RateLimitInfo"
+                    },
+                    "usage": {
+                      "$ref": "#/components/schemas/UsageInfo"
+                    }
+                  }
+                },
+                {
+                  "$ref": "#/components/schemas/SuccessResponseBody"
+                }
+              ]
+            }
+          }
+        }
+      },
       "ForbiddenErrorResponse": {
         "description": "Forbidden",
         "content": {
@@ -335,6 +370,67 @@
       }
     },
     "schemas": {
+      "BatchGenerateBody": {
+        "type": "object",
+        "description": "Batch Generate Request Body",
+        "required": [
+          "batch"
+        ],
+        "properties": {
+          "batch": {
+            "type": "array",
+            "description": "Array of generate requests to submit as a batch. Each item is a regular url or user generate request body.",
+            "minItems": 1,
+            "maxItems": 24,
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/UrlGenerateBody"
+                },
+                {
+                  "$ref": "#/components/schemas/UserGenerateBody"
+                }
+              ]
+            }
+          }
+        },
+        "example": {
+          "batch": [
+            {
+              "url": "https://i.imgur.com/kQPrtYw.png"
+            },
+            {
+              "user": "61699b2ed3274a019f1e0ea8c3f06bc6"
+            }
+          ]
+        }
+      },
+      "BatchJobItem": {
+        "type": "object",
+        "description": "Result of a single item in a batch generate request. Each item is processed independently, so some may succeed while others fail.",
+        "required": [
+          "success"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether this item was successfully submitted/generated"
+          },
+          "job": {
+            "$ref": "#/components/schemas/JobInfo"
+          },
+          "skin": {
+            "$ref": "#/components/schemas/SkinInfo"
+          },
+          "errors": {
+            "type": "array",
+            "description": "Errors for this item, if it failed",
+            "items": {
+              "$ref": "#/components/schemas/CodeAndMessage"
+            }
+          }
+        }
+      },
       "CodeAndMessage": {
         "type": "object",
         "properties": {
@@ -1377,6 +1473,51 @@
             "source": "MineSkinClient client = MineSkinClient.builder()\r\n        .requestHandler(JsoupRequestHandler::new)\r\n        .userAgent(\"MyMineSkinApp/v1.0\")\r\n        .apiKey(\"<api key>\")\r\n        .build();\r\nGenerateRequest request = GenerateRequest.upload(file)\r\n        .name(\"My Skin\")\r\n        .visibility(Visibility.PUBLIC);\r\nclient.queue().submit(request).thenAccept(response -> {\r\n    JobInfo job = response.getJob();\r\n});"
           }
         ]
+      }
+    },
+    "/v2/queue/batch": {
+      "post": {
+        "summary": "Queue batch skin generation",
+        "description": "Submit multiple generation requests in a single call.\n\nEach item in the `batch` array is a regular url or user generate request body and is processed independently, so some items may succeed while others fail - check the `success` field of each result item. Results are returned in the same order as the request.\n\nRequires the `batch_generation` grant (Pro+). A batch may contain between 1 and 24 items. The whole batch counts against your rate limit, so a batch larger than your remaining per-minute allowance is rejected with a 429.",
+        "tags": [
+          "generate",
+          "queue"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/userAgent"
+          },
+          {
+            "$ref": "#/components/parameters/apiKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchGenerateBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/BatchQueueResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/GenerateUserErrorResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenErrorResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/GenerateRateLimitResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/GenerateErrorResponse"
+          }
+        }
       }
     },
     "/v2/queue/{jobId}": {

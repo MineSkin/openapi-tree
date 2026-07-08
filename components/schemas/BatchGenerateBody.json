@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "description": "Batch Generate Request Body",
+  "required": [
+    "batch"
+  ],
+  "properties": {
+    "batch": {
+      "type": "array",
+      "description": "Array of generate requests to submit as a batch. Each item is a regular url or user generate request body.",
+      "minItems": 1,
+      "maxItems": 24,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "./UrlGenerateBody.json"
+          },
+          {
+            "$ref": "./UserGenerateBody.json"
+          }
+        ]
+      }
+    }
+  },
+  "example": {
+    "batch": [
+      {
+        "url": "https://i.imgur.com/kQPrtYw.png"
+      },
+      {
+        "user": "61699b2ed3274a019f1e0ea8c3f06bc6"
+      }
+    ]
+  }
+}

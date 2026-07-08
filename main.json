@@ -235,6 +235,51 @@
         ]
       }
     },
+    "/v2/queue/batch": {
+      "post": {
+        "summary": "Queue batch skin generation",
+        "description": "Submit multiple generation requests in a single call.\n\nEach item in the `batch` array is a regular url or user generate request body and is processed independently, so some items may succeed while others fail - check the `success` field of each result item. Results are returned in the same order as the request.\n\nRequires the `batch_generation` grant (Pro+). A batch may contain between 1 and 24 items. The whole batch counts against your rate limit, so a batch larger than your remaining per-minute allowance is rejected with a 429.",
+        "tags": [
+          "generate",
+          "queue"
+        ],
+        "parameters": [
+          {
+            "$ref": "./components/parameters/userAgent.json"
+          },
+          {
+            "$ref": "./components/parameters/apiKey.json"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./components/schemas/BatchGenerateBody.json"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "$ref": "./components/responses/BatchQueueResponse.json"
+          },
+          "400": {
+            "$ref": "./components/responses/GenerateUserErrorResponse.json"
+          },
+          "403": {
+            "$ref": "./components/responses/ForbiddenErrorResponse.json"
+          },
+          "429": {
+            "$ref": "./components/responses/GenerateRateLimitResponse.json"
+          },
+          "500": {
+            "$ref": "./components/responses/GenerateErrorResponse.json"
+          }
+        }
+      }
+    },
     "/v2/queue/{jobId}": {
       "get": {
         "summary": "Get Job Status",
